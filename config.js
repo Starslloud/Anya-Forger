@@ -6,10 +6,20 @@ import { fileURLToPath } from 'url'
 
 global.mods = []
 global.prems = []
-global.AnyaJadibts = true
 global.owner = [
   ['51939658716', 'Samsito', true],
 ]
+
+//*⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯*
+
+global.libreria = 'Baileys'
+global.baileys = 'V 6.7.8'
+global.vs = '1.0.0'
+global.languaje = 'Español'
+global.nameqr = 'Anya Forger'
+global.sessions = 'AnyaSession'
+global.jadi = 'AnyaJadiBot'
+global.AnyaJadibts = true
 
 //*⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯⭒⋯*
 
