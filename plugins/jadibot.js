@@ -17,7 +17,7 @@ let crm3 = "SBpbmZvLWRvbmFyLmpz"
 let crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
 let drm1 = ""
 let drm2 = ""
-let rtx = "[ ✰ ] *Sigue las instrucciones:*\n\n*» Mas opciones*\n*» Dispositivos vinculados*\n*» Escanea este QR\n\n> *Nota:* Este Código solo funciona en el número que lo solicito"
+let rtx = "[ ✰ ] *Sigue las instrucciones:*\n\n*» Mas opciones*\n*» Dispositivos vinculados*\n*» Escanea este QR*\n\n> *Nota:* Este Código solo funciona en el número que lo solicito"
 let rtx2 = "[ ✰ ] *Sigue las instrucciones:*\n\n*» Mas opciones*\n*» Dispositivos vinculados*\n*» Vincular nuevo dispositivo*\n*» Vincular usando numero*\n\n> *Nota:* Este Código solo funciona en el número que lo solicito"
 
 
