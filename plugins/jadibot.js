@@ -128,7 +128,7 @@ const { connection, lastDisconnect, isNewLogin, qr } = update
 if (isNewLogin) sock.isInit = false
 if (qr && !mcode) {
 if (m?.chat) {
-txtQR = await parentw.sendFile(m.chat, await qrcode.toDataURL(qr, { scale: 8 }), "qrcode.png", rtx, m, null, rcanal)
+txtQR = await conn.sendMessage(m.chat, { image: await qrcode.toBuffer(qr, { scale: 8 }), caption: rtx.trim()}, m, rcanal)
 } else {
 return 
 }
