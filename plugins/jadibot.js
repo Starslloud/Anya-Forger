@@ -128,10 +128,10 @@ const { connection, lastDisconnect, isNewLogin, qr } = update
 if (isNewLogin) sock.isInit = false
 if (qr && !mcode) {
 if (m?.chat) {
-txtQR = await parentw.sendFile(m.chat, { image: await qrcode.toBuffer(qr, { scale: 8 }), rtx, m, null rcanal)
-} else {
-return 
-}
+txtQR = await conn.sendMessage(m.chat, { image: await qrcode.toBuffer(qr, { scale: 8 }), caption: rtx, m, rcanal)
+//} else {
+//return 
+//}
 if (txtQR && txtQR.key) {
 setTimeout(() => { conn.sendMessage(m.sender, { delete: txtQR.key })}, 30000)
 }
