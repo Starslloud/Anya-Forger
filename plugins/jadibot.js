@@ -128,7 +128,7 @@ const { connection, lastDisconnect, isNewLogin, qr } = update
 if (isNewLogin) sock.isInit = false
 if (qr && !mcode) {
 if (m?.chat) {
-txtQR = await conn.reply(m.chat, await qrcode.toBuffer(qr, { scale: 8 }), rtx, m, rcanal)
+txtQR = await conn.sendMessage(m.chat, { image: await qrcode.toBuffer(qr, { scale: 8 }), caption: rtx.trim()}, { quoted: m})
 } else {
 return 
 }
@@ -170,41 +170,41 @@ global.conns.splice(i, 1)
 const reason = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
 if (connection === 'close') {
 if (reason === 428) {
-console.log(chalk.bold.magentaBright(`La conexión (+${path.basename(pathAnyaJadiBot)}) fue cerrada inesperadamente. Intentando reconectar...`))
+console.log(chalk.bold.magentaBright(`(+${path.basename(pathAnyaJadiBot)})`))
 await creloadHandler(true).catch(console.error)
 }
 if (reason === 408) {
-console.log(chalk.bold.magentaBright(`La conexión (+${path.basename(pathAnyaJadiBot)}) se perdió o expiró. Razón: ${reason}. Intentando reconectar`))
+console.log(chalk.bold.magentaBright(`(+${path.basename(pathAnyaJadiBot)}) ${reason}`))
 await creloadHandler(true).catch(console.error)
 }
 if (reason === 440) {
-console.log(chalk.bold.magentaBright(`La conexión (+${path.basename(pathAnyaJadiBot)}) fue reemplazada por otra sesión activa.`))
+console.log(chalk.bold.magentaBright(`(+${path.basename(pathAnyaJadiBot)})`))
 try {
-if (options.fromCommand) m?.chat ? await conn.sendMessage(`${path.basename(pathAnyaJadiBot)}@s.whatsapp.net`, {text : 'Borre la nueva sesión para continuar.' }, { quoted: m || null }) : ""
+if (options.fromCommand) m?.chat ? await conn.sendMessage(`${path.basename(pathAnyaJadiBot)}@s.whatsapp.net`, {text : '' }, { quoted: m || null }) : ""
 } catch (error) {
 console.error(chalk.bold.yellow(`Error 440 no se pudo enviar mensaje a: +${path.basename(pathAnyaJadiBot)}`))
 }}
 if (reason == 405 || reason == 401) {
-console.log(chalk.bold.magentaBright(`La sesión (+${path.basename(pathAnyaJadiBot)}) fue cerrada. Credenciales no válidas o dispositivo desconectado manualmente.`))
+console.log(chalk.bold.magentaBright(`(+${path.basename(pathAnyaJadiBot)})`))
 try {
-if (options.fromCommand) m?.chat ? await conn.sendMessage(`${path.basename(pathAnyaJadiBot)}@s.whatsapp.net`, {text : 'Intenté nuevamente' }, { quoted: m || null }) : ""
+if (options.fromCommand) m?.chat ? await conn.sendMessage(`${path.basename(pathAnyaJadiBot)}@s.whatsapp.net`, {text : '' }, { quoted: m || null }) : ""
 } catch (error) {
 console.error(chalk.bold.yellow(`Error 405 no se pudo enviar mensaje a: +${path.basename(pathAnyaJadiBot)}`))
 }
 fs.rmdirSync(pathAnyaJadiBot, { recursive: true })
 }
 if (reason === 500) {
-console.log(chalk.bold.magentaBright(`Conexión perdida en la sesión (+${path.basename(pathAnyaJadiBot)}). Borrando datos...`))
-if (options.fromCommand) m?.chat ? await conn.sendMessage(`${path.basename(pathAnyaJadiBot)}@s.whatsapp.net`, {text : 'Conexión perdida...' }, { quoted: m || null }) : ""
+console.log(chalk.bold.magentaBright(`(+${path.basename(pathAnyaJadiBot)})`))
+if (options.fromCommand) m?.chat ? await conn.sendMessage(`${path.basename(pathAnyaJadiBot)}@s.whatsapp.net`, {text : '' }, { quoted: m || null }) : ""
 return creloadHandler(true).catch(console.error)
 //fs.rmdirSync(pathAnyaJadiBot, { recursive: true })
 }
 if (reason === 515) {
-console.log(chalk.bold.magentaBright(`Reinicio automático para la sesión (+${path.basename(pathAnyaJadiBot)}).`))
+console.log(chalk.bold.magentaBright(`(+${path.basename(pathAnyaJadiBot)}).`))
 await creloadHandler(true).catch(console.error)
 }
 if (reason === 403) {
-console.log(chalk.bold.magentaBright(`Sesión cerrada o cuenta en soporte para la sesión (+${path.basename(pathAnyaJadiBot)}).`))
+console.log(chalk.bold.magentaBright(`(+${path.basename(pathAnyaJadiBot)}).`))
 fs.rmdirSync(pathAnyaJadiBot, { recursive: true })
 }}
 if (global.db.data == null) loadDatabase()
