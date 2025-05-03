@@ -187,7 +187,7 @@ console.error(chalk.bold.yellow(`Error 440 no se pudo enviar mensaje a: +${path.
 if (reason == 405 || reason == 401) {
 console.log(chalk.bold.magentaBright(`La sesión (+${path.basename(pathAnyaJadiBot)}) fue cerrada. Credenciales no válidas o dispositivo desconectado manualmente.`))
 try {
-if (options.fromCommand) m?.chat ? await conn.sendMessage(`${path.basename(pathAnyaJadiBot)}@s.whatsapp.net`, {text : '*SESIÓN PENDIENTE*\n\n> *INTENTÉ NUEVAMENTE VOLVER A SER SUB-BOT*' }, { quoted: m || null }) : ""
+if (options.fromCommand) m?.chat ? await conn.sendMessage(`${path.basename(pathAnyaJadiBot)}@s.whatsapp.net`, {text : 'Intenté nuevamente' }, { quoted: m || null }) : ""
 } catch (error) {
 console.error(chalk.bold.yellow(`Error 405 no se pudo enviar mensaje a: +${path.basename(pathAnyaJadiBot)}`))
 }
