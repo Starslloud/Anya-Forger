@@ -18,7 +18,7 @@ let crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
 let drm1 = ""
 let drm2 = ""
 let rtx = "*✞ঔৣr̴ 𝘽𝙡𝙖𝙘𝙠 𝙘𝙡𝙤𝙫𝙚𝙧 - 𝙨𝙪𝙗 𝙗𝙤𝙩 ঔৣ*\n\n✞ Cσɳҽxισɳ SυႦ-Bσƚ Mσԃҽ QR\n\n✰ Con otro celular o en la PC escanea este QR para convertirte en un *Sub-Bot* Temporal.\n\n\`1\` » Haga clic en los tres puntos en la esquina superior derecha\n\n\`2\` » Toque dispositivos vinculados\n\n\`3\` » Escanee este codigo QR para iniciar sesion con el bot\n\n✧ ¡Este código QR expira en 45 segundos!."
-let rtx2 = "*» Mas opciones*\n*» Dispositivos vinculados*\n*» Vincular nuevo dispositivo*\n*» Vincular usando numero*\n\n> *Nota:* Este Código solo funciona en el número que lo solicito"
+let rtx2 = "[ ✰ ] *Sigue las instrucciones:*\n\n*» Mas opciones*\n*» Dispositivos vinculados*\n*» Vincular nuevo dispositivo*\n*» Vincular usando numero*\n\n> *Nota:* Este Código solo funciona en el número que lo solicito"
 
 
 const __filename = fileURLToPath(import.meta.url)
