@@ -167,6 +167,17 @@ delete global.conns[i]
 global.conns.splice(i, 1)
 }}
 
+if (global.db.data == null) loadDatabase()
+if (connection == `open`) {
+if (!global.db.data?.users) loadDatabase()
+let userName, userJid 
+userName = sock.authState.creds.me.name || 'Anónimo'
+userJid = sock.authState.creds.me.jid || `${path.basename(pathAnyaJadiBot)}@s.whatsapp.net`
+console.log(chalk.bold.cyanBright(`Conectado exitosamente.`))
+sock.isInit = true
+global.conns.push(sock)
+await joinChannels(sock)
+
 m?.chat ? await conn.sendMessage(m.chat, {text: args[0] ? `@${m.sender.split('@')[0]}, ya estás conectado, leyendo mensajes entrantes...` : `@${m.sender.split('@')[0]}, genial ya eres parte de la familia Sub-Bots.`, mentions: [m.sender]}, { quoted: m }) : ''
 
 }}
