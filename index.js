@@ -1,110 +1,54 @@
-import { join, dirname } from 'path';
-import { createRequire } from 'module';
-import { fileURLToPath } from 'url';
-import { setupMaster, fork } from 'cluster';
-import { watchFile, unwatchFile } from 'fs';
-import cfonts from 'cfonts';
-import { createInterface } from 'readline';
-import yargs from 'yargs';
-import express from 'express';
-import chalk from 'chalk';
-import path from 'path';
-import os from 'os';
-import { promises as fsPromises } from 'fs';
-import figlet from 'figlet';
+console.log('✯ Iniciando ✯')
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const require = createRequire(__dirname);
-const { say } = cfonts;
-const rl = createInterface(process.stdin, process.stdout);
+import { join, dirname } from 'path'
+import { createRequire } from 'module'
+import { fileURLToPath } from 'url'
+import { setupMaster, fork } from 'cluster'
+import { watchFile, unwatchFile } from 'fs'
+import cfonts from 'cfonts'
 
-const app = express();
-const port = process.env.PORT || 8080;
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const require = createRequire(__dirname)
 
-figlet('Anya Forger', {
-  font: 'Slant', 
-  horizontalLayout: 'default',
-  verticalLayout: 'default'
-}, (err, data) => {
-  if (err) {
-    console.log('Error con figlet:', err);
-    return;
-  }
-  console.log(chalk.green(data));
-  console.log(chalk.yellow('Iniciando...'));
-});
-
-figlet('Creado Por Samsito', {
-  font: 'Standard',
-  horizontalLayout: 'default',
-  verticalLayout: 'default'
-}, (err, data) => {
-  if (err) {
-    console.log('Error con figlet:', err);
-    return;
-  }
-  console.log(chalk.magenta(data));
-});
-
-say('Anya Forger', {
+cfonts.say('Ai\nHoshino', {
   font: 'chrome',
   align: 'center',
   gradient: ['red', 'magenta']
-});
+})
 
-var isRunning = false;
+cfonts.say(`WhatsApp Bot Multi Device`, {
+  font: 'console',
+  align: 'center',
+  gradient: ['red', 'magenta']
+})
+
+let isRunning = false
 
 async function start(files) {
-  if (isRunning) return;
-  isRunning = true;
+  if (isRunning) return
+  isRunning = true
 
   for (const file of files) {
-    const currentFilePath = new URL(import.meta.url).pathname;
-    let args = [join(__dirname, file), ...process.argv.slice(2)];
-    say([process.argv[0], ...args].join(' '), {
-      font: 'console',
-      align: 'center',
-      gradient: ['blue', 'blue']
-    });
+    const args = [join(__dirname, file), ...process.argv.slice(2)]
 
     setupMaster({
       exec: args[0],
       args: args.slice(1),
-    });
+    })
 
-    let p = fork();
-    p.on('message', data => {
-      console.log('[RECEIVED]', data);
-      switch (data) {
-        case 'reset':
-          p.process.kill();
-          isRunning = false;
-          start(files);
-          break;
-        case 'uptime':
-          p.send(process.uptime());
-          break;
-      }
-    });
+    let p = fork()
 
-    p.on('exit', (_, code) => {
-      isRunning = false;
-      console.error('Ocurrió un error inesperado:', code);
-      start(files);
+    p.on('exit', (code) => {
+      isRunning = false
+      start(files)
 
-      if (code === 0) return;
+      if (code === 0) return
       watchFile(args[0], () => {
-        unwatchFile(args[0]);
-        start(files);
-      });
-    });
-
-    let opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse());
-    if (!opts['test'])
-      if (!rl.listenerCount()) rl.on('line', line => {
-        p.emit('message', line.trim());
-      });
+        unwatchFile(args[0])
+        start(files)
+      })
+    })
   }
 }
 
-start(['main.js']);
+start(['main.js'])
